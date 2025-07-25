@@ -58,7 +58,7 @@ const HeroSection = () => {
             <img 
               src={headshot} 
               alt="Andres Tenias - Full-Stack Developer" 
-              className="relative w-80 h-80 lg:w-96 lg:h-96 object-cover rounded-full border-4 border-primary/20 shadow-elegant"
+              className="relative w-80 h-80 lg:w-96 lg:h-96 object-cover rounded-full border-4 border-primary/20 shadow-elegant filter grayscale hover:grayscale-0 transition-all duration-500 hover:scale-105 cursor-pointer"
             />
           </div>
         </div>
