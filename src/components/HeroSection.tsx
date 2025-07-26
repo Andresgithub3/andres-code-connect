@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ExternalLink } from "lucide-react";
 import CVButton from "@/components/CVButton";
-import headshot from "@/assets/andres-tenias-photo.jpg";
+import headshot from "@/assets/andres-photo-512.jpg";
 
 const HeroSection = () => {
   return (
