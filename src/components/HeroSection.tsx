@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ExternalLink } from "lucide-react";
 import CVButton from "@/components/CVButton";
-import headshot from "@/assets/andres-headshot.jpg";
+import headshot from "@/assets/andres-tenias-photo.jpg";
 
 const HeroSection = () => {
   return (
@@ -40,9 +40,9 @@ const HeroSection = () => {
               </div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold text-primary">65%</div>
+              <div className="text-3xl font-bold text-primary">5</div>
               <div className="text-sm text-text-dimmed mt-1">
-                Submission-to-Interview Ratio
+                Technical Projects Completed
               </div>
             </div>
             <div className="text-center">
