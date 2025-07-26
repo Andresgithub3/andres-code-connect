@@ -47,7 +47,7 @@ const Navigation = () => {
               onClick={() => scrollToSection("contact")}
               className="bg-primary hover:bg-primary-glow text-primary-foreground font-semibold px-6 transition-all duration-300"
             >
-              Get Quote
+              Start your project
             </Button>
           </div>
 
@@ -81,7 +81,7 @@ const Navigation = () => {
                 onClick={() => scrollToSection("contact")}
                 className="bg-primary hover:bg-primary-glow text-primary-foreground font-semibold mt-4 w-full"
               >
-                Get Quote
+                Hire me
               </Button>
             </div>
           </div>
