@@ -47,7 +47,7 @@ const ContactSection = () => {
         <div className="grid lg:grid-cols-2 gap-12">
           {/* Contact Form */}
           <div className="bg-card border border-border rounded-xl p-8">
-            <h3 className="text-2xl font-semibold mb-6">Get Your Free Project Quote</h3>
+            <h3 className="text-2xl font-semibold mb-6">Tell Me About Your Project</h3>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <Label htmlFor="name" className="text-sm font-medium">
@@ -95,14 +95,13 @@ const ContactSection = () => {
                 />
               </div>
 
-              <Button 
+              <button 
                 type="submit" 
-                size="lg"
-                className="w-full bg-primary hover:bg-primary-glow text-primary-foreground font-semibold transition-all duration-300 hover:scale-105"
+                className="inline-flex items-center gap-2 bg-primary hover:bg-primary-glow text-primary-foreground hover:text-primary border border-transparent hover:border-primary font-semibold px-4 py-2 text-base shadow-elegant transition-all duration-300 hover:scale-105 rounded-lg"
               >
-                Get My Free Quote
+                Contact me
                 <Send className="ml-2 h-5 w-5" />
-              </Button>
+              </button>
             </form>
 
             <div className="mt-8 pt-8 border-t border-border">
@@ -166,7 +165,7 @@ const ContactSection = () => {
               
               <div className="space-y-4">
                 <a 
-                  href="https://linkedin.com/in/andrestenias" 
+                  href="https://www.linkedin.com/in/andresteniasgil/" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="flex items-center space-x-4 p-4 bg-secondary/30 rounded-lg hover:bg-secondary/50 transition-colors group"
@@ -181,7 +180,7 @@ const ContactSection = () => {
                 </a>
 
                 <a 
-                  href="https://github.com/andrestenias" 
+                  href="https://github.com/Andresgithub3" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="flex items-center space-x-4 p-4 bg-secondary/30 rounded-lg hover:bg-secondary/50 transition-colors group"

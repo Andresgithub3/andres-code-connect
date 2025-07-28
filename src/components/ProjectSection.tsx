@@ -57,13 +57,12 @@ const ProjectSection = () => {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button 
-                size="lg"
-                className="bg-primary hover:bg-primary-glow text-primary-foreground font-semibold transition-all duration-300"
+              <button 
+                className="inline-flex items-center gap-2 bg-primary hover:bg-primary-glow text-primary-foreground hover:text-primary border border-transparent hover:border-primary font-semibold px-4 py-2 text-base shadow-elegant transition-all duration-300 hover:scale-105 rounded-lg"
               >
                 View Live Demo
                 <ExternalLink className="ml-2 h-4 w-4" />
-              </Button>
+              </button>
               <Button 
                 variant="outline" 
                 size="lg"

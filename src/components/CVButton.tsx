@@ -13,7 +13,7 @@ const CVButton = () => {
   return (
     <button
       onClick={handleDownload}
-      className="inline-flex items-center gap-2 bg-primary hover:bg-primary-glow text-primary-foreground hover:text-primary border border-transparent hover:border-primary font-semibold px-8 py-4 text-lg shadow-elegant transition-all duration-300 hover:scale-105 rounded-lg"
+      className="inline-flex items-center gap-2 bg-primary hover:bg-primary-glow text-primary-foreground hover:text-primary border border-transparent hover:border-primary font-semibold px-4 py-2 text-base shadow-elegant transition-all duration-300 hover:scale-105 rounded-lg"
     >
       <Download className="h-5 w-5" />
       Download CV

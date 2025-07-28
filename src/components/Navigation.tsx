@@ -43,12 +43,12 @@ const Navigation = () => {
                 {item.label}
               </button>
             ))}
-            <Button 
+            <button 
               onClick={() => scrollToSection("contact")}
-              className="bg-primary hover:bg-primary-glow text-primary-foreground font-semibold px-6 transition-all duration-300"
+              className="inline-flex items-center gap-1 bg-primary hover:bg-primary-glow text-primary-foreground hover:text-primary border border-transparent hover:border-primary font-semibold px-4 py-2 text-base shadow-elegant transition-all duration-300 hover:scale-105 rounded-lg"
             >
               Start your project
-            </Button>
+            </button>
           </div>
 
           {/* Mobile Menu Button */}
