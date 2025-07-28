@@ -1,5 +1,5 @@
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { supabase, type Contact } from "@/lib/supabase";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Mail, Phone, MapPin, Linkedin, Github, Send } from "lucide-react";
@@ -10,24 +10,64 @@ const ContactSection = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    projectDetails: ""
+    projectDetails: "",
   });
   const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would typically send the form data to your backend
-    toast({
-      title: "Message Sent!",
-      description: "I'll get back to you within 24 hours with your free project quote.",
-    });
-    setFormData({ name: "", email: "", projectDetails: "" });
+
+    try {
+      // Show loading state (optional)
+      const loadingToast = toast({
+        title: "Sending message...",
+        description: "Please wait while we process your request.",
+      });
+
+      // Prepare data for Supabase
+      const contactData: Omit<Contact, "id" | "created_at"> = {
+        name: formData.name,
+        email: formData.email,
+        project_details: formData.projectDetails,
+      };
+
+      // Insert into Supabase
+      const { data, error } = await supabase
+        .from("contacts")
+        .insert([contactData])
+        .select();
+
+      if (error) {
+        throw error;
+      }
+
+      // Success!
+      toast({
+        title: "Message Sent Successfully!",
+        description:
+          "I'll get back to you within 24 hours with your free project quote.",
+      });
+
+      // Clear the form
+      setFormData({ name: "", email: "", projectDetails: "" });
+    } catch (error) {
+      console.error("Error submitting form:", error);
+
+      toast({
+        title: "Something went wrong",
+        description:
+          "Please try again or email me directly at your.email@domain.com",
+        variant: "destructive",
+      });
+    }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
@@ -39,7 +79,7 @@ const ContactSection = () => {
             Ready to <span className="text-primary">Start Your Project?</span>
           </h2>
           <p className="text-xl text-text-dimmed max-w-3xl mx-auto">
-            Let's discuss how my business experience and technical expertise can 
+            Let's discuss how my business experience and technical expertise can
             help bring your vision to life with measurable results.
           </p>
         </div>
@@ -47,7 +87,9 @@ const ContactSection = () => {
         <div className="grid lg:grid-cols-2 gap-12">
           {/* Contact Form */}
           <div className="bg-card border border-border rounded-xl p-8">
-            <h3 className="text-2xl font-semibold mb-6">Tell Me About Your Project</h3>
+            <h3 className="text-2xl font-semibold mb-6">
+              Tell Me About Your Project
+            </h3>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <Label htmlFor="name" className="text-sm font-medium">
@@ -95,8 +137,8 @@ const ContactSection = () => {
                 />
               </div>
 
-              <button 
-                type="submit" 
+              <button
+                type="submit"
                 className="inline-flex items-center gap-2 bg-primary hover:bg-primary-glow text-primary-foreground hover:text-primary border border-transparent hover:border-primary font-semibold px-4 py-2 text-base shadow-elegant transition-all duration-300 hover:scale-105 rounded-lg"
               >
                 Contact me
@@ -106,8 +148,8 @@ const ContactSection = () => {
 
             <div className="mt-8 pt-8 border-t border-border">
               <p className="text-sm text-text-dimmed text-center">
-                🔒 Your information is secure and will never be shared. 
-                I'll respond within 24 hours.
+                🔒 Your information is secure and will never be shared. I'll
+                respond within 24 hours.
               </p>
             </div>
           </div>
@@ -116,7 +158,7 @@ const ContactSection = () => {
           <div className="space-y-8">
             <div className="bg-card border border-border rounded-xl p-8">
               <h3 className="text-2xl font-semibold mb-6">Let's Connect</h3>
-              
+
               <div className="space-y-6">
                 <div className="flex items-center space-x-4">
                   <div className="bg-primary/10 p-3 rounded-lg">
@@ -124,8 +166,8 @@ const ContactSection = () => {
                   </div>
                   <div>
                     <p className="font-semibold">Email</p>
-                    <a 
-                      href="mailto:aetg94@gmail.com" 
+                    <a
+                      href="mailto:aetg94@gmail.com"
                       className="text-primary hover:text-primary-glow transition-colors"
                     >
                       aetg94@gmail.com
@@ -139,8 +181,8 @@ const ContactSection = () => {
                   </div>
                   <div>
                     <p className="font-semibold">Phone</p>
-                    <a 
-                      href="tel:+17809722452" 
+                    <a
+                      href="tel:+17809722452"
                       className="text-primary hover:text-primary-glow transition-colors"
                     >
                       780-972-2452
@@ -154,19 +196,23 @@ const ContactSection = () => {
                   </div>
                   <div>
                     <p className="font-semibold">Location</p>
-                    <p className="text-text-dimmed">Edmonton, Alberta, Canada</p>
+                    <p className="text-text-dimmed">
+                      Edmonton, Alberta, Canada
+                    </p>
                   </div>
                 </div>
               </div>
             </div>
 
             <div className="bg-card border border-border rounded-xl p-8">
-              <h3 className="text-xl font-semibold mb-6">Professional Profiles</h3>
-              
+              <h3 className="text-xl font-semibold mb-6">
+                Professional Profiles
+              </h3>
+
               <div className="space-y-4">
-                <a 
-                  href="https://www.linkedin.com/in/andresteniasgil/" 
-                  target="_blank" 
+                <a
+                  href="https://www.linkedin.com/in/andresteniasgil/"
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center space-x-4 p-4 bg-secondary/30 rounded-lg hover:bg-secondary/50 transition-colors group"
                 >
@@ -175,13 +221,15 @@ const ContactSection = () => {
                   </div>
                   <div>
                     <p className="font-semibold">LinkedIn Profile</p>
-                    <p className="text-sm text-text-dimmed">Professional background & recommendations</p>
+                    <p className="text-sm text-text-dimmed">
+                      Professional background & recommendations
+                    </p>
                   </div>
                 </a>
 
-                <a 
-                  href="https://github.com/Andresgithub3" 
-                  target="_blank" 
+                <a
+                  href="https://github.com/Andresgithub3"
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center space-x-4 p-4 bg-secondary/30 rounded-lg hover:bg-secondary/50 transition-colors group"
                 >
@@ -190,16 +238,20 @@ const ContactSection = () => {
                   </div>
                   <div>
                     <p className="font-semibold">GitHub Portfolio</p>
-                    <p className="text-sm text-text-dimmed">Code examples & project repositories</p>
+                    <p className="text-sm text-text-dimmed">
+                      Code examples & project repositories
+                    </p>
                   </div>
                 </a>
               </div>
             </div>
 
             <div className="bg-gradient-to-r from-primary/10 to-accent/10 rounded-xl p-6 border border-primary/20">
-              <h4 className="text-lg font-semibold mb-3">Quick Response Guarantee</h4>
+              <h4 className="text-lg font-semibold mb-3">
+                Quick Response Guarantee
+              </h4>
               <p className="text-text-dimmed text-sm">
-                I typically respond to all project inquiries within 24 hours. 
+                I typically respond to all project inquiries within 24 hours.
                 For urgent requests, feel free to call directly.
               </p>
             </div>
