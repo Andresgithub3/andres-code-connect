@@ -1,5 +1,6 @@
 import { Input } from "@/components/ui/input";
 import { supabase, type Contact } from "@/lib/supabase";
+import emailjs from "@emailjs/browser";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Mail, Phone, MapPin, Linkedin, Github, Send } from "lucide-react";
@@ -17,41 +18,104 @@ const ContactSection = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    let databaseSuccess = false;
+    let emailSuccess = false;
+
     try {
-      // Show loading state (optional)
-      const loadingToast = toast({
+      // Show loading state
+      toast({
         title: "Sending message...",
         description: "Please wait while we process your request.",
       });
 
-      // Prepare data for Supabase
-      const contactData: Omit<Contact, "id" | "created_at"> = {
-        name: formData.name,
-        email: formData.email,
-        project_details: formData.projectDetails,
-      };
+      // 1. Try to save to Supabase database
+      try {
+        console.log("Attempting to save to database...");
+        const contactData: Omit<Contact, "id" | "created_at"> = {
+          name: formData.name,
+          email: formData.email,
+          project_details: formData.projectDetails,
+        };
 
-      // Insert into Supabase
-      const { data, error } = await supabase
-        .from("contacts")
-        .insert([contactData])
-        .select();
+        const { data, error } = await supabase
+          .from("contacts")
+          .insert([contactData])
+          .select();
 
-      if (error) {
-        throw error;
+        if (error) {
+          console.error("Supabase error:", error);
+          throw error;
+        }
+
+        console.log("✅ Data saved to database successfully:", data);
+        databaseSuccess = true;
+      } catch (dbError) {
+        console.error("❌ Database save failed:", dbError);
+        // Continue to EmailJS even if database fails
       }
 
-      // Success!
-      toast({
-        title: "Message Sent Successfully!",
-        description:
-          "I'll get back to you within 24 hours with your free project quote.",
-      });
+      // 2. Send email notification via EmailJS
+      try {
+        console.log("Attempting to send email...");
+        const emailParams = {
+          from_name: formData.name,
+          from_email: formData.email,
+          message: formData.projectDetails,
+          to_email: import.meta.env.VITE_YOUR_EMAIL || "your.email@domain.com",
+          current_date: new Date().toLocaleDateString(),
+        };
 
-      // Clear the form
-      setFormData({ name: "", email: "", projectDetails: "" });
+        console.log("EmailJS params:", emailParams);
+        console.log(
+          "EmailJS Service ID:",
+          import.meta.env.VITE_EMAILJS_SERVICE_ID
+        );
+        console.log(
+          "EmailJS Template ID:",
+          import.meta.env.VITE_EMAILJS_TEMPLATE_ID
+        );
+        console.log(
+          "EmailJS Public Key exists:",
+          !!import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+        );
+
+        const emailResult = await emailjs.send(
+          import.meta.env.VITE_EMAILJS_SERVICE_ID,
+          import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+          emailParams,
+          import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+        );
+
+        console.log("✅ Email sent successfully:", emailResult);
+        emailSuccess = true;
+      } catch (emailError) {
+        console.error("❌ Email send failed:", emailError);
+      }
+
+      // 3. Show appropriate success/error message
+      if (databaseSuccess || emailSuccess) {
+        let description = "I'll get back to you within 24 hours.";
+        if (databaseSuccess && emailSuccess) {
+          description =
+            "Message saved and email sent! I'll get back to you within 24 hours.";
+        } else if (databaseSuccess && !emailSuccess) {
+          description = "Message saved! I'll get back to you within 24 hours.";
+        } else if (!databaseSuccess && emailSuccess) {
+          description = "Email sent! I'll get back to you within 24 hours.";
+        }
+
+        toast({
+          title: "Message Sent Successfully!",
+          description: description,
+        });
+
+        // Clear the form
+        setFormData({ name: "", email: "", projectDetails: "" });
+      } else {
+        throw new Error("Both database and email failed");
+      }
     } catch (error) {
-      console.error("Error submitting form:", error);
+      console.error("Complete form submission failed:", error);
 
       toast({
         title: "Something went wrong",
