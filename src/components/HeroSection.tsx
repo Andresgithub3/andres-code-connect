@@ -11,7 +11,11 @@ const HeroSection = () => {
           <div className="space-y-4">
             <h1 className="text-5xl lg:text-6xl font-bold leading-tight">
               Business-Minded Developer Who{" "}
-              <span className="text-primary">Delivers Results</span>
+              <div className="inline-block"> 
+                <span className="text-primary animate-typing overflow-hidden whitespace-nowrap border-r-4 pr-5 block">
+                  Delivers Results
+                </span>
+              </div>
             </h1>
             <p className="text-xl text-text-dimmed leading-relaxed max-w-2xl">
               I combine 7+ years of business experience with modern full-stack
