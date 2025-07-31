@@ -3,8 +3,8 @@ import { Building, Calendar, MapPin, TrendingUp } from "lucide-react";
 const ExperienceSection = () => {
   const experiences = [
     {
-      company: "Vemex Digital",
-      role: "Owner & Full-Stack Developer",
+      company: "Freelance",
+      role: "Full-Stack Developer",
       period: "Aug 2019 - Present",
       location: "Edmonton, AB",
       description: "Lead full-stack development projects while managing client relationships and business operations.",
