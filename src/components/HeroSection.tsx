@@ -109,7 +109,7 @@ const HeroSection = () => {
             {/* Main image container */}
             <div className="relative bg-card/30 backdrop-blur-md p-8 rounded-3xl border border-white/20">
               <img
-                src="/src/assets/andres-photo-512.jpg"
+                src="/images/andres-photo-512.jpg"
                 alt="Andres Tenias - Full-Stack Developer"
                 className="relative w-80 h-80 lg:w-96 lg:h-96 object-cover rounded-3xl border-4 border-primary/20 shadow-2xl filter grayscale hover:grayscale-0 transition-all duration-500 hover:scale-105 cursor-pointer"
               />
