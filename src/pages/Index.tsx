@@ -5,13 +5,16 @@ import SkillsSection from "@/components/SkillsSection";
 import ProjectSection from "@/components/ProjectSection";
 import ExperienceSection from "@/components/ExperienceSection";
 import ContactSection from "@/components/ContactSection";
+import ScrollProgressBar from "@/components/ScrollProgressBar";
+import WhatsAppWidget from "@/components/WhatsAppWidget";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen">
       <Navigation />
+      <ScrollProgressBar />
       
-      <main>
+      <main className="relative">
         <section id="hero">
           <HeroSection />
         </section>
@@ -37,13 +40,15 @@ const Index = () => {
         </section>
       </main>
       
-      <footer className="bg-section-bg border-t border-border py-8">
+      <footer className="bg-card/30 backdrop-blur-md border-t border-border/20 py-8 relative">
         <div className="max-w-6xl mx-auto px-6 text-center">
           <p className="text-text-dimmed">
             © 2024 Andres Tenias. Built with React, TypeScript, and Tailwind CSS.
           </p>
         </div>
       </footer>
+
+      <WhatsAppWidget />
     </div>
   );
 };
