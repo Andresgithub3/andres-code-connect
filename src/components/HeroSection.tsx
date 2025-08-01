@@ -7,20 +7,25 @@ const HeroSection = () => {
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
 
   return (
-    <section className="min-h-screen flex items-center justify-center px-6 py-20 relative overflow-hidden">
-      {/* Video Background */}
+    <section
+      className="min-h-screen flex items-center justify-center px-6 py-20 pt-safe relative overflow-hidden"
+      style={{ paddingTop: "max(5rem, env(safe-area-inset-top))" }}
+    >
+      {/* Video Background - Desktop Only */}
       <div className="absolute inset-0 z-0">
         <video
           autoPlay
           muted
           loop
           playsInline
-          className="w-full h-full object-cover opacity-20"
+          className="hidden md:block w-full h-full object-cover opacity-20"
         >
           <source src="/videos/applayout-crm.mp4" type="video/mp4" />
         </video>
-        {/* Fallback gradient */}
-        <div className="absolute inset-0 w-full h-full bg-gradient-to-br from-primary/5 via-transparent to-accent/5" />
+        {/* Mobile gradient background */}
+        <div className="md:hidden absolute inset-0 bg-gradient-to-br from-white via-gray-50 to-gray-100" />
+        {/* Desktop fallback gradient */}
+        <div className="hidden md:block absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5" />
       </div>
 
       {/* Animated Background Elements */}
@@ -33,7 +38,7 @@ const HeroSection = () => {
       <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center relative z-10">
         <div className="space-y-8 animate-fade-in-up">
           <div className="space-y-6">
-            <h1 className="text-4xl lg:text-6xl font-bold leading-tight">
+            <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold">
               Business-Minded Developer Who
               <div className="inline-block">
                 <span className="animate-typing overflow-hidden whitespace-nowrap border-r-4 border-r-primary pr-2 block bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">

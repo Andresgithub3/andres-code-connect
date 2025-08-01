@@ -74,7 +74,7 @@ const SkillsSection = () => {
         </div>
 
         {/* Interactive Categories */}
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
+        <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-4 mb-12">
           {Object.entries(skillCategories).map(([key, category]) => (
             <button
               key={key}
