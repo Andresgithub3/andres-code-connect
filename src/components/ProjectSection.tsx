@@ -1,7 +1,5 @@
 import { Button } from "@/components/ui/button";
 import {
-  ExternalLink,
-  Github,
   Database,
   Shield,
   Users,
@@ -11,6 +9,7 @@ import {
   CheckCircle,
 } from "lucide-react";
 import { useState } from "react";
+import GitHubIcon from "@/assets/github.svg"; 
 
 const ProjectSection = () => {
   const [activeDemo, setActiveDemo] = useState("dashboard");
@@ -112,15 +111,21 @@ const ProjectSection = () => {
                   onClick={() => scrollToSection("contact")}
                 >
                   <Play className="w-4 h-4 mr-2" />
-                  Request Live Demo
+                  Contact me for a Live Demo
                 </Button>
-                <Button
-                  variant="outline"
-                  className="border-primary/50 hover:bg-primary/10 text-sm md:text-base"
+                <a
+                  href="https://github.com/Andresgithub3"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
-                  <Github className="w-4 h-4 mr-2" />
-                  View Code
-                </Button>
+                  <Button
+                    variant="outline"
+                    className="border-primary/50 hover:bg-primary/10 text-sm md:text-base"
+                  >
+                    <img src={GitHubIcon} alt="GitHub" className="w-4 h-4 mr-2" />
+                    View Code
+                  </Button>
+                </a>
               </div>
             </div>
           </div>
@@ -144,7 +149,7 @@ const ProjectSection = () => {
                 ].map((feature, index) => (
                   <div
                     key={index}
-                    className="flex items-center gap-3 p-3 bg-secondary/30 rounded-lg hover:bg-secondary/50 transition-colors"
+                    className="flex items-center gap-3 p-3 bg-secondary/30 rounded-lg hover:bg-secondary/50 transition-colors hover:scale-105"
                   >
                     <CheckCircle className="w-4 h-4 md:w-5 md:h-5 text-green-500 flex-shrink-0" />
                     <span className="text-xs md:text-sm font-medium">
@@ -184,7 +189,7 @@ const ProjectSection = () => {
             </div>
 
             {/* CTA */}
-            <div className="text-center">
+            <div className="text-center relative z-50">
               <Button
                 size="lg"
                 className="w-full sm:w-auto bg-gradient-to-r from-primary to-accent hover:opacity-90 transition-opacity px-6 md:px-8"

@@ -1,11 +1,25 @@
-import { GraduationCap, Briefcase, Users, TrendingUp, Lightbulb, Target } from "lucide-react";
+import {
+  GraduationCap,
+  Briefcase,
+  Users,
+  TrendingUp,
+  Lightbulb,
+  Target,
+} from "lucide-react";
 
 const AboutSection = () => {
+  function scrollToSection(sectionId: string) {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+  }
+
   return (
     <section className="py-20 px-6 relative overflow-hidden">
       {/* Background effects */}
       <div className="absolute inset-0 bg-gradient-to-r from-accent/5 via-transparent to-primary/5" />
-      
+
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
@@ -14,10 +28,17 @@ const AboutSection = () => {
             <span className="text-sm font-medium text-primary">About Me</span>
           </div>
           <h2 className="text-4xl lg:text-6xl font-bold mb-6">
-            Business Experience Meets <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Technical Excellence</span>
+            Business Experience Meets{" "}
+            <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+              Technical Excellence
+            </span>
           </h2>
           <p className="text-xl text-text-dimmed max-w-4xl mx-auto leading-relaxed">
-            While most developers focus purely on code, <strong className="text-foreground">I bring business acumen and technical expertise</strong> to deliver solutions that drive measurable results.
+            While most developers focus purely on code,{" "}
+            <strong className="text-foreground">
+              I bring business acumen and technical expertise
+            </strong>{" "}
+            to deliver solutions that drive measurable results.
           </p>
         </div>
 
@@ -29,9 +50,13 @@ const AboutSection = () => {
                 <Briefcase className="w-6 h-6 text-white" />
               </div>
               <div>
-                <h3 className="text-xl font-semibold mb-2">Business Strategy Background</h3>
+                <h3 className="text-xl font-semibold mb-2">
+                  Business Strategy Background
+                </h3>
                 <p className="text-text-dimmed leading-relaxed">
-                  <strong>7+ years</strong> in business development and consulting at PwC. I understand the business context behind every technical decision.
+                  <strong>7+ years</strong> in business development and
+                  consulting at PwC. I understand the business context behind
+                  every technical decision.
                 </p>
               </div>
             </div>
@@ -41,9 +66,14 @@ const AboutSection = () => {
                 <Users className="w-6 h-6 text-white" />
               </div>
               <div>
-                <h3 className="text-xl font-semibold mb-2">Stakeholder Communication</h3>
+                <h3 className="text-xl font-semibold mb-2">
+                  Stakeholder Communication
+                </h3>
                 <p className="text-text-dimmed leading-relaxed">
-                  Proven ability to <strong>translate complex technical concepts</strong> for non-technical stakeholders and gather requirements that lead to successful outcomes.
+                  Proven ability to{" "}
+                  <strong>translate complex technical concepts</strong> for
+                  non-technical stakeholders and gather requirements that lead
+                  to successful outcomes.
                 </p>
               </div>
             </div>
@@ -53,9 +83,13 @@ const AboutSection = () => {
                 <Target className="w-6 h-6 text-white" />
               </div>
               <div>
-                <h3 className="text-xl font-semibold mb-2">Results-Driven Approach</h3>
+                <h3 className="text-xl font-semibold mb-2">
+                  Results-Driven Approach
+                </h3>
                 <p className="text-text-dimmed leading-relaxed">
-                  Every project is measured against <strong>business objectives</strong>. I focus on ROI, user conversion, and measurable business impact.
+                  Every project is measured against{" "}
+                  <strong>business objectives</strong>. I focus on ROI, user
+                  conversion, and measurable business impact.
                 </p>
               </div>
             </div>
@@ -70,11 +104,14 @@ const AboutSection = () => {
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold">Current Education</h3>
-                  <p className="text-primary font-medium">BrainStation Software Engineering Diploma</p>
+                  <p className="text-primary font-medium">
+                    BrainStation Software Engineering Diploma
+                  </p>
                 </div>
               </div>
               <p className="text-text-dimmed">
-                <strong>Intensive full-stack program</strong> (Oct 2024 - Jun 2025) covering modern React, Node.js, and database technologies.
+                <strong>Intensive full-stack program</strong> (Oct 2024 - Jun
+                2025) covering modern React, Node.js, and database technologies.
               </p>
             </div>
 
@@ -85,11 +122,14 @@ const AboutSection = () => {
                 </div>
                 <div>
                   <h3 className="text-xl font-semibold">Business Foundation</h3>
-                  <p className="text-primary font-medium">Business Degree - MacEwan University</p>
+                  <p className="text-primary font-medium">
+                    Business Degree - MacEwan University
+                  </p>
                 </div>
               </div>
               <p className="text-text-dimmed">
-                <strong>Strategic foundation</strong> in business strategy, project management, and organizational dynamics.
+                <strong>Strategic foundation</strong> in business strategy,
+                project management, and organizational dynamics.
               </p>
             </div>
 
@@ -99,12 +139,17 @@ const AboutSection = () => {
                   <TrendingUp className="w-8 h-8 text-white" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold">Recruitment Expertise</h3>
-                  <p className="text-primary font-medium">Technical Talent Acquisition</p>
+                  <h3 className="text-xl font-semibold">
+                    Recruitment Expertise
+                  </h3>
+                  <p className="text-primary font-medium">
+                    Technical Talent Acquisition
+                  </p>
                 </div>
               </div>
               <p className="text-text-dimmed">
-                <strong>Deep understanding</strong> of technical roles from years of evaluating and placing software engineers.
+                <strong>Deep understanding</strong> of technical roles from
+                years of evaluating and placing software engineers.
               </p>
             </div>
           </div>
@@ -115,13 +160,20 @@ const AboutSection = () => {
           <div className="bg-gradient-to-r from-primary/10 to-accent/10 rounded-3xl p-8 border border-primary/20">
             <h3 className="text-2xl font-bold mb-4">Ready to Work Together?</h3>
             <p className="text-text-dimmed mb-6 max-w-2xl mx-auto">
-              Let's discuss how my unique combination of business experience and technical expertise can help bring your vision to life.
+              Let's discuss how my unique combination of business experience and
+              technical expertise can help bring your vision to life.
             </p>
             <div className="flex justify-center gap-4">
-              <button className="bg-gradient-to-r from-primary to-accent text-white px-8 py-3 rounded-xl font-semibold hover:scale-105 transition-transform">
+              <button
+                className="bg-gradient-to-r from-primary to-accent text-white px-8 py-3 rounded-xl font-semibold hover:scale-105 transition-transform relative z-50"
+                onClick={() => scrollToSection("contact")}
+              >
                 Schedule a Call
               </button>
-              <button className="border border-primary/50 text-primary px-8 py-3 rounded-xl font-semibold hover:bg-primary/10 transition-colors">
+              <button
+                className="border border-primary/50 text-primary px-8 py-3 rounded-xl font-semibold hover:bg-primary/10 transition-colors relative z-50"
+                onClick={() => scrollToSection("project")}
+              >
                 View My Work
               </button>
             </div>

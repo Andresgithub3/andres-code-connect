@@ -6,6 +6,13 @@ import { useState } from "react";
 const HeroSection = () => {
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
 
+  function scrollToSection(sectionId: string): void {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+  }
+
   return (
     <section
       className="min-h-screen flex items-center justify-center px-6 py-20 pt-safe relative overflow-hidden"
@@ -63,11 +70,11 @@ const HeroSection = () => {
             <Button
               variant="outline"
               size="lg"
-              className="group border-primary/50 text-primary hover:bg-primary hover:text-primary-foreground px-8 py-4 text-lg font-semibold transition-all duration-300 hover:scale-105 backdrop-blur-sm"
+              onClick={() => scrollToSection("project")}
+              className="group mr-2 group-hover:animate-pulse border-primary/50 text-primary hover:bg-primary hover:text-primary-foreground px-8 py-4 text-lg font-semibold transition-all duration-300 hover:scale-105 backdrop-blur-sm"
             >
-              <Play className="mr-2 h-5 w-5 group-hover:animate-pulse" />
-              See My Work
               <ExternalLink className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              See My Work
             </Button>
           </div>
 
